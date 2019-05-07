@@ -1,0 +1,48 @@
+body{
+    background-color: darkgreen;
+}
+h1{
+    text-align: center;
+}
+
+section{
+    height: 200px;     
+}
+#dealer-cards{
+    text-align: center
+}
+
+#player-handvalue,#deck-cards,#buttons,#turn,#dealer-handvalue{
+    width: 14.5%;
+    
+}
+#player-cards,#message,#dealer-cards{
+    width: 70%;
+}
+
+#player-cards, #buttons, #player-handvalue,#message,#deck-cards,#dealer-handvalue,#dealer-cards,#turn{
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle
+    
+}
+#deck-cards{
+    vertical-align: top;
+    height: inherit;
+}
+#deck-cards-container{
+    width: 100px;
+}
+button{
+    display: block;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    margin: auto
+}
+img{
+    width: 100px;    
+}
+#player-cards>img:hover,#dealer-cards>img:hover{
+    z-index: 10000 !important;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<body>
+    <h1>Welcome to MTA Blackjack</h1>
+    <section id="dealer">
+        <div id="dealer-handvalue">
+                <p><span id="com-name"></span>, the value of your hand is <span id="com-value"></span></p>
+        </div>
+        <div id="dealer-cards">
+        </div>
+    </section>
+    <section id="deck">
+        <div id="turn">
+            <p>Player's turn</p>
+        </div>
+        <div id="message">
+            <h2 id="message-title"></h2>
+        </div>
+        <div id="deck-cards">
+            <div id="deck-cards-container"></div>
+        </div>
+        
+    </section>
+    <section id="player">
+        <div id="player-handvalue">
+            <p><span id="player-name"></span>, the value of your hand is <span id="player-value"></span></p>
+        </div>
+        <div id="player-cards"></div>
+        <div id="buttons">
+            <button id="new-game">New Game</button>
+            <button id="deal-card">Deal Card</button>
+            <button id="end-turn">End Turn</button>
+        </div>
+    </section>
+    <script src="js/script.js"></script>
+</body>
+</html>
