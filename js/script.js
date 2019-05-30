@@ -55,7 +55,7 @@ const cardImage = {
 }
 
 class Player{
-    constructor(name,imgElement,nameElement,valueElement){
+    constructor(name,imgElement,nameElement,valueElement,type){
         this.name = name,
         this.hand = [],
         this.handValue = 0
@@ -64,20 +64,42 @@ class Player{
         this.imgElement = imgElement;
         this.nameElement = nameElement;
         this.valueElement = valueElement
+        this.type = type;
+        let rect = document.getElementById(this.imgElement).getBoundingClientRect();
+        this.y = rect.y;
+        this.x = rect.x + rect.width / 2; 
     }
 
-    addImgElement(){
-
-        var img = document.createElement("img");
-        img.src = "./cards/PNG/" + this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
-        img.style.zIndex  = this.overlap;
-        img.style.position = "relative";
-        img.style.right = this.position + "px";
+    async addImgElement(){
+        let img = document.createElement("div");
+        img.className = "card-container"
+        document.getElementById(this.imgElement).append(img)
+        let posX = this.x;
+        let posY = this.y; 
+        console.log(this.x,this.y)
+        let card = await this.moveCard(posX,posY)
+        // console.log(card)
+        // console.log(posX,posY)
+        
+        card.remove()
+        img.append(card);
+        card.style.zIndex  = this.overlap;
+        card.style.right = this.position + "px";
+        card.classList.add("card-dealt")
+        card.classList.remove("card-dealing")
+        
+            
+        // card.src = "./cards/PNG/" + this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
+        // card.style.zIndex  = this.overlap;
+        // card.style.position = "relative";
+        // card.style.right = this.position + "px";
+        // card.style.left = "auto";
+        // card.style.top = "auto";
         this.overlap++
         this.position +=50
-        document.getElementById(this.imgElement).append(img)
         document.getElementById(this.nameElement).innerText = this.name;   // change it doesn't have to be in addImgElement
-        document.getElementById(this.valueElement).innerHTML = this.handValue; 
+        document.getElementById(this.valueElement).innerHTML = this.handValue;
+         
     }
 
     reset(){
@@ -86,17 +108,52 @@ class Player{
         this.overlap = 2,
         this.position = 0
     }
+
+    moveCard(posX,posY){
+        let card = document.getElementById("deck-cards-container").lastChild;
+        card.classList.add("card-dealing");
+        card.classList.remove("card-on-deck")
+        card.style.top = posY + "px";
+        card.style.left = posX + "px";
+        
+        this.turnCard(card)
+    
+        var promise =  new Promise((res)=>{
+            card.addEventListener("transitionend",(e)=>{
+            if(e.propertyName == "top") res(card)
+            })   
+        })
+        return promise
+        
+    }
+    turnCard(card){
+        card = card.lastChild
+        card.style.transform = "rotate3d(0,100,0,90deg)";
+        card.style.transition = "transform 250ms linear";
+        card.addEventListener("transitionend",()=>{
+            card.lastChild.classList.remove("card-back");
+            card.lastChild.classList.add("card-front");
+            let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
+            card.lastChild.src = "./cards/PNG/" + pic;
+            card.style.transform = "rotate3d(0,1,0,180deg)";
+            card.style.transition = "transform 250ms linear";
+        })
+    }
+    addingImg(){
+        
+        
+    }
 }
-var com = new Player("Computer","dealer-cards","com-name","com-value");
+var com = new Player("Computer","dealer-cards","com-name","com-value","com");
 var player;
 var turn = "player";
 const deal = () =>{
-   var card,dealCard;
+var card,dealCard;
     random = Math.floor(Math.random()*(Object.keys(cardImage).length-1));
     card = Object.keys(cardImage)[random];
     dealCard = Object.fromEntries(new Array([card,cardImage[card]]));
     delete cardImage[card]
-    deckCards();
+    // deckCards();
     return dealCard;
 }
 
@@ -170,59 +227,66 @@ const checkWinner = ()=>{
     return (player.handValue > com.handValue)? player.name : com.name; // The higher hand wins
 }
 
-const deckCards = () =>{
+const deckCards = async () =>{
+    var rect,moveContainer,turnContainer,img
     var translate = 0
-    zIndex = 2
+    let zIndex = 2
     document.getElementById("deck-cards-container").innerHTML = ""
     for(i = 0; i < Object.keys(cardImage).length; i++){
-        var img = document.createElement("img");
+        img = document.createElement("img");
+        img.classList.add("card-back")
         img.src = "./cards/PNG/blue_back.png";
-        img.style.position = "absolute";
         img.style.transform = "translate(" + translate + "px," + translate + "px)"
         translate -= 0.25;
         img.style.zIndex = zIndex;
         zIndex++;
-        document.getElementById("deck-cards-container").append(img);
+        turnContainer = document.createElement("div");
+        turnContainer.append(img);
+        moveContainer = document.createElement("div");
+        moveContainer.classList.add("card-on-deck")
+        moveContainer.append(turnContainer);
+        document.getElementById("deck-cards-container").append(moveContainer);
+        moveContainer.style.top = moveContainer.getBoundingClientRect().y + "px";
+        moveContainer.style.left = moveContainer.getBoundingClientRect().x + "px";
+        console.log(moveContainer.style.top)
     } 
 }
 
-const newGame = () =>{
+const newGame = async () =>{
     document.getElementById("dealer-cards").innerHTML = "";
     document.getElementById("player-cards").innerHTML = "";
     document.getElementById("message-title").innerText = "";
     player.reset();
     com.reset();
+    await deckCards();
     player.hand.push(deal());
     player.handValue = checkCardsValue(player.hand)
-    player.addImgElement();
+    await player.addImgElement();
     player.hand.push(deal());
     player.handValue = checkCardsValue(player.hand)
-    player.addImgElement();
+    await player.addImgElement();
     turn = "player";
     com.hand.push(deal());
     com.handValue = checkCardsValue(com.hand);
-    com.addImgElement();
+    await com.addImgElement();
     com.hand.push(deal());
     com.handValue = checkCardsValue(com.hand);
-    com.addImgElement();
-    deckCards();
+    await com.addImgElement();
 }
 
 const message = () =>{
     if(checkWinner() == player.name){
         document.getElementById("message-title").innerText = "Congratulation you won";
-       
+    
         
     } else{
         document.getElementById("message-title").innerText = "YOUR LOST";
- 
+
     }
 }
 
 // var name = prompt("Please enter your name");
-var name = prompt("Please enter your name:")
-var player = new Player(name,"player-cards", "player-name", "player-value")
-newGame();
+
 
 document.getElementById("new-game").addEventListener("click",()=>{
     newGame();
@@ -237,6 +301,9 @@ document.getElementById("deal-card").addEventListener("click",()=>{
 document.getElementById("end-turn").addEventListener("click",()=>{
     comPlayer();
 })
+var name = prompt("Please enter your name:")
+var player = new Player(name,"player-cards", "player-name", "player-value", "human")
+newGame();
 
 
 
@@ -259,12 +326,3 @@ document.getElementById("end-turn").addEventListener("click",()=>{
 
 console.log("GAME OVER")
 
-module.exports = {
-    cards,
-    suite,
-    Player,
-    deal,
-    checkCardsValue,
-    comPlayer,
-    checkWinner
-}

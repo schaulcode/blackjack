@@ -1,15 +1,12 @@
 body{
     background-color: darkgreen;
 }
-h1{
+h1,#dealer-cards{
     text-align: center;
 }
 
 section{
     height: 200px;     
-}
-#dealer-cards{
-    text-align: center
 }
 
 #player-handvalue,#deck-cards,#buttons,#turn,#dealer-handvalue{
@@ -18,6 +15,10 @@ section{
 }
 #player-cards,#message,#dealer-cards{
     width: 70%;
+}
+
+#player-cards, #dealer-cards{
+    height: 156.813px;
 }
 
 #player-cards, #buttons, #player-handvalue,#message,#deck-cards,#dealer-handvalue,#dealer-cards,#turn{
@@ -45,4 +46,50 @@ img{
 }
 #player-cards>img:hover,#dealer-cards>img:hover{
     z-index: 10000 !important;
+}
+.card-container{
+    display: inline-block;
+}
+#player-cards > div,#dealer-cards>div{
+    display: inline-block;
+}
+
+
+
+
+.card-back{
+    position: absolute;
+}
+
+.card-front{
+    transform: rotate3d(0,1,0,180deg) translate(0,0) !important;
+}
+
+.card-turning{
+    transform: rotate3d(0,1,0,180deg);
+    transition: transform 250ms linear 0;
+}
+
+.card-on-deck{
+    transition-property: top,left;
+    transition-duration: 500ms;
+    transition-timing-function: linear;
+    /* transition-delay: 1s; */
+    
+
+}
+
+.card-dealing{
+    position: fixed;
+    transition-property:  top, left;
+    transition-duration: 500ms;
+    transition-timing-function: linear;
+    /* transition-delay: 1s; */
+}
+
+.card-dealt{
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    
 }
