@@ -87,14 +87,7 @@ class Player{
         card.style.right = this.position + "px";
         card.classList.add("card-dealt")
         card.classList.remove("card-dealing")
-        
-            
-        // card.src = "./cards/PNG/" + this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
-        // card.style.zIndex  = this.overlap;
-        // card.style.position = "relative";
-        // card.style.right = this.position + "px";
-        // card.style.left = "auto";
-        // card.style.top = "auto";
+    
         this.overlap++
         this.position +=50
         document.getElementById(this.nameElement).innerText = this.name;   // change it doesn't have to be in addImgElement
@@ -147,13 +140,22 @@ class Player{
 var com = new Player("Computer","dealer-cards","com-name","com-value","com");
 var player;
 var turn = "player";
+
+const getRect = (e) =>{
+    var rect = e.getBoundingClientRect();
+    var promise = new Promise((res) =>{
+        if(rect != undefined)res(rect)
+    })
+    return promise
+}
+
 const deal = () =>{
 var card,dealCard;
     random = Math.floor(Math.random()*(Object.keys(cardImage).length-1));
     card = Object.keys(cardImage)[random];
     dealCard = Object.fromEntries(new Array([card,cardImage[card]]));
     delete cardImage[card]
-    // deckCards();
+    // deckCards(); 
     return dealCard;
 }
 
@@ -246,10 +248,16 @@ const deckCards = async () =>{
         moveContainer.classList.add("card-on-deck")
         moveContainer.append(turnContainer);
         document.getElementById("deck-cards-container").append(moveContainer);
+        // rect = moveContainer.getBoundingClientRect();
         moveContainer.style.top = moveContainer.getBoundingClientRect().y + "px";
         moveContainer.style.left = moveContainer.getBoundingClientRect().x + "px";
         console.log(moveContainer.style.top)
     } 
+
+    var promise = new Promise(res =>{
+        setTimeout(()=>res('done'),1);
+    })
+    return promise
 }
 
 const newGame = async () =>{
