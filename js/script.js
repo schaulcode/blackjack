@@ -59,7 +59,7 @@ class Player{
         this.name = name,
         this.hand = [],
         this.handValue = 0
-        this.overlap = 2;
+        this.overlap = 20;
         this.position = 0
         this.imgElement = imgElement;
         this.nameElement = nameElement;
@@ -67,14 +67,16 @@ class Player{
         this.type = type;
         let rect = document.getElementById(this.imgElement).getBoundingClientRect();
         this.y = rect.y;
-        this.x = rect.x + rect.width / 2; 
+        this.x = rect.x + rect.width / 2 - 50; 
+        this.finalPosTemp = rect.width / 2 - 50
+        this.finalPos = this.finalPosTemp
     }
 
     async addImgElement(){
         let img = document.createElement("div");
         img.className = "card-container"
-        document.getElementById(this.imgElement).append(img)
-        let posX = this.x;
+        document.getElementById(this.imgElement).insertBefore(img,document.getElementById(this.imgElement).firstChild)
+        let posX = this.x - this.position;
         let posY = this.y; 
         console.log(this.x,this.y)
         let card = await this.moveCard(posX,posY)
@@ -83,13 +85,16 @@ class Player{
         
         card.remove()
         img.append(card);
+        img.style.marginRight = this.finalPos + "px";
         card.style.zIndex  = this.overlap;
-        card.style.right = this.position + "px";
+        card.style.left = this.position + "px";
+        card.style.top = "auto"
         card.classList.add("card-dealt")
         card.classList.remove("card-dealing")
     
-        this.overlap++
-        this.position +=50
+        this.overlap--;
+        this.position +=50;
+        this.finalPos = 0;
         document.getElementById(this.nameElement).innerText = this.name;   // change it doesn't have to be in addImgElement
         document.getElementById(this.valueElement).innerHTML = this.handValue;
          
@@ -99,7 +104,8 @@ class Player{
         this.hand = [],
         this.handValue = 0,
         this.overlap = 2,
-        this.position = 0
+        this.position = 0;
+        this.finalPos = this.finalPosTemp;
     }
 
     moveCard(posX,posY){

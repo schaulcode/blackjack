@@ -6,7 +6,7 @@ h1,#dealer-cards{
 }
 
 section{
-    height: 200px;     
+    height: 180px;     
 }
 
 #player-handvalue,#deck-cards,#buttons,#turn,#dealer-handvalue{
@@ -17,15 +17,15 @@ section{
     width: 70%;
 }
 
-#player-cards, #dealer-cards{
-    height: 156.813px;
-}
 
 #player-cards, #buttons, #player-handvalue,#message,#deck-cards,#dealer-handvalue,#dealer-cards,#turn{
     display: inline-block;
     text-align: center;
-    vertical-align: middle
-    
+    vertical-align: middle   
+}
+#player-cards, #dealer-cards{
+    height: 156.813px;
+    text-align: right
 }
 #deck-cards{
     vertical-align: top;
@@ -89,7 +89,7 @@ img{
 
 .card-dealt{
     position: relative;
-    top: auto !important;
-    left: auto !important;
+    top: auto ;
+    left: auto;
     
 }
