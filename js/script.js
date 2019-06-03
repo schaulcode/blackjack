@@ -93,7 +93,7 @@ class Player{
         card.classList.remove("card-dealing")
     
         this.overlap--;
-        this.position +=50;
+        this.position += 50;
         this.finalPos = 0;
         document.getElementById(this.nameElement).innerText = this.name;   // change it doesn't have to be in addImgElement
         document.getElementById(this.valueElement).innerHTML = this.handValue;
@@ -120,7 +120,7 @@ class Player{
         card.style.top = posY + "px";
         card.style.left = posX + "px";
         
-        if(this.type != "com" || this.hand.length == 1){
+        if(this.type != "com" || this.hand.length == 1 || turn == "com"){
             this.turnCard(card)
         }else{ 
             card.lastChild.lastChild.classList.remove("card-back");
@@ -147,10 +147,10 @@ class Player{
             card.style.transform = "rotate3d(0,1,0,180deg)";
             card.style.transition = "transform 250ms linear";
         })
+        return new Promise(res => setTimeout(()=>res("done"),650));
     }
     addingImg(){
-        
-        
+           
     }
 }
 var com = new Player("Computer","dealer-cards","com-name","com-value","com");
@@ -209,9 +209,14 @@ const checkCardsValue = (hand) =>{
     return value ;
 }
 
-const comPlayer = () =>{
+const comPlayer = async () =>{
     turn = "com";
     var cont = true
+
+    let card = document.getElementById(com.imgElement).firstChild.lastChild;
+    await com.turnCard(card)
+    card.classList.remove("card-back-com")
+    
     do{
         if(com.handValue <= 16){ 
             var c = deal();
@@ -236,6 +241,7 @@ const comPlayer = () =>{
         }
     }while(cont)
     message();
+    
     
 }
 
