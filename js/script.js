@@ -66,9 +66,9 @@ class Player{
         this.valueElement = valueElement
         this.type = type;
         let rect = document.getElementById(this.imgElement).getBoundingClientRect();
-        this.y = rect.y;
-        this.x = rect.x + rect.width / 2 - 50; 
-        this.finalPosTemp = rect.width / 2 - 50
+        this.y = rect.y + 10;
+        this.x = rect.x + rect.width / 2 ; 
+        this.finalPosTemp = rect.width / 2 -100;
         this.finalPos = this.finalPosTemp
     }
 
@@ -108,7 +108,7 @@ class Player{
     reset(){
         this.hand = [],
         this.handValue = 0,
-        this.overlap = 2,
+        this.overlap = 20,
         this.position = 0;
         this.finalPos = this.finalPosTemp;
     }
@@ -222,7 +222,7 @@ const comPlayer = async () =>{
             var c = deal();
             com.hand.push(c);
             com.handValue = checkCardsValue(com.hand)
-            com.addImgElement()
+            await com.addImgElement()
         }
     
         if(com.handValue > 16 && com.handValue <21){
@@ -230,7 +230,7 @@ const comPlayer = async () =>{
             if(random <= 0.5){
                 com.hand.push(deal());
                 com.handValue = checkCardsValue(com.hand)
-                com.addImgElement()
+                await com.addImgElement()
             }else{
                 cont = false;
             }
