@@ -85,7 +85,7 @@ img{
 .card-dealing{
     position: fixed;
     transition-property:  top, left;
-    transition-duration: 500ms;
+    transition-duration: 600ms;
     transition-timing-function: linear;
     /* transition-delay: 1s; */
 }
