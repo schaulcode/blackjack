@@ -97,7 +97,12 @@ class Player{
         this.finalPos = 0;
         document.getElementById(this.nameElement).innerText = this.name;   // change it doesn't have to be in addImgElement
         document.getElementById(this.valueElement).innerHTML = this.handValue;
-         
+        let promise = new Promise((res) =>{
+            setTimeout(() => {
+                res("done")
+            }, 1);
+        })
+         return promise;
     }
 
     reset(){
