@@ -120,8 +120,13 @@ class Player{
         card.style.top = posY + "px";
         card.style.left = posX + "px";
         
-        this.turnCard(card)
-    
+        if(this.type != "com" || this.hand.length == 1){
+            this.turnCard(card)
+        }else{ 
+            card.lastChild.lastChild.classList.remove("card-back");
+            card.lastChild.lastChild.classList.add("card-back-com");
+        } 
+        
         var promise =  new Promise((res)=>{
             card.addEventListener("transitionend",(e)=>{
             if(e.propertyName == "top") res(card)

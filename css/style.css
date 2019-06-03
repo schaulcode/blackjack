@@ -60,6 +60,9 @@ img{
 .card-back{
     position: absolute;
 }
+.card-back-com{
+    transform: translate(0,0) !important;
+}
 
 .card-front{
     transform: rotate3d(0,1,0,180deg) translate(0,0) !important;
