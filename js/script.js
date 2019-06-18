@@ -306,11 +306,11 @@ const newGame = async () =>{
 
 const message = () =>{
     if(checkWinner() == player.name){
-        document.getElementById("message-title").innerText = "Congratulation you won";
+        document.getElementById("message-title").innerText = "Congratulation YOU WON";
     
         
     } else{
-        document.getElementById("message-title").innerText = "YOUR LOST";
+        document.getElementById("message-title").innerText = "YOU LOST";
 
     }
 }
