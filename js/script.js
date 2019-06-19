@@ -78,7 +78,7 @@ class Player{
         document.getElementById(this.imgElement).insertBefore(img,document.getElementById(this.imgElement).firstChild)
         let posX = this.x - this.position;
         let posY = this.y; 
-        console.log(this.x,this.y)
+        // console.log(this.x,this.y)
         let card = await this.moveCard(posX,posY)
         // console.log(card)
         // console.log(posX,posY)
@@ -273,7 +273,7 @@ const deckCards = async () =>{
         // rect = moveContainer.getBoundingClientRect();
         moveContainer.style.top = moveContainer.getBoundingClientRect().y + "px";
         moveContainer.style.left = moveContainer.getBoundingClientRect().x + "px";
-        console.log(moveContainer.style.top)
+        // console.log(moveContainer.style.top)
     } 
 
     var promise = new Promise(res =>{
