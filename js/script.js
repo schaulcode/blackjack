@@ -136,13 +136,14 @@ class Player{
         
     }
     turnCard(card){
+        let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
         card = card.lastChild
         card.style.transform = "rotate3d(0,100,0,90deg)";
         card.style.transition = "transform 250ms linear";
         card.addEventListener("transitionend",()=>{
             card.lastChild.classList.remove("card-back");
             card.lastChild.classList.add("card-front");
-            let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
+            // let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
             card.lastChild.src = "./cards/PNG/" + pic;
             card.style.transform = "rotate3d(0,1,0,180deg)";
             card.style.transition = "transform 250ms linear";
