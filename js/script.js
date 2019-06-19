@@ -180,7 +180,7 @@ const checkCardsValue = (hand) =>{
     hand.forEach(e =>{
         cardValue.push(Object.keys(e)[0][0])
     })
-    console.log(cardValue);
+    // console.log(cardValue);
     var value = 0;
     var ace = false;
     if(cardValue.length == 2 && cardValue[0] == "J" && cardValue[1] == "J")return 21;
