@@ -259,7 +259,7 @@ const deckCards = async () =>{
     for(i = 0; i < Object.keys(cardImage).length; i++){
         img = document.createElement("img");
         img.classList.add("card-back")
-        img.src = "./cards/PNG/blue_back.png";
+        img.src = "./cards/PNG/turquoise_back.png";
         img.style.transform = "translate(" + translate + "px," + translate + "px)"
         translate -= 0.25;
         img.style.zIndex = zIndex;

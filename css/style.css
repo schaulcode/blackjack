@@ -3,7 +3,7 @@ body{
     background-size: cover
 }
 h1{
-    color: cadetblue
+    color: rgb(137, 223, 226)
 }
 h1,#dealer-cards{
     text-align: center;
@@ -19,25 +19,24 @@ section{
 }
 #player-handvalue,#dealer-handvalue,#turn{
     font-size: 40px;
-    background-color: lightgray;
+    background-color: rgba(0, 108, 103, 0.7);
     height: inherit;
-    border: 2px solid black;
-}
-#player-handvalue{
-    border-top: none;
+ 
 }
 #turn{
-    border-top: none;
     font-size: 20px;  
 }
 #turn>p{
     padding: 58.5px 0px;
+    color: rgb(137, 223, 226);
+    border-top: 1px dotted;
+    border-bottom: 1px dotted;
 }
 #player-name{
-    color: red;
+    color: rgb(137, 223, 226);
 }
 #com-name{
-    color: blue;
+    color: rgb(137, 223, 226);
 }
 #player-cards,#message,#dealer-cards{
     width: 70%;
@@ -71,7 +70,9 @@ button{
     height: 40px;
     text-align: center;
     margin: 5px;
-    font-size: 16px
+    font-size: 16px;
+    background-color: #006c67e0;
+    color: rgb(137, 223, 226); 
 }
 img{
     width: 100px;    
