@@ -2,6 +2,9 @@ body{
     background-image: url(../background.jpg);
     background-size: cover
 }
+h1{
+    color: cadetblue
+}
 h1,#dealer-cards{
     text-align: center;
 }
@@ -14,11 +17,21 @@ section{
     width: 14.5%;
     
 }
-#player-handvalue,#dealer-handvalue{
+#player-handvalue,#dealer-handvalue,#turn{
     font-size: 40px;
     background-color: lightgray;
     height: inherit;
     border: 2px solid black;
+}
+#player-handvalue{
+    border-top: none;
+}
+#turn{
+    border-top: none;
+    font-size: 20px;  
+}
+#turn>p{
+    padding: 58.5px 0px;
 }
 #player-name{
     color: red;
