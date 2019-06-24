@@ -340,24 +340,3 @@ window.addEventListener("load", function(){
 })
 
 
-
-
-// com.handValue = checkCardsValue(com.hand);
-// console.log(player.name + "'s turn")
-// do{
-//     console.log(player.name + " This is your hand " + player.hand);
-//     var answer = prompt("Do you want another card? ");
-//     if(answer){
-//         player.hand.push(deal());
-//         player.handValue = checkCardsValue(player.hand)
-//     }else{
-//         break;
-//     }
-// }while(player.handValue < 21)
-
-
-// comPlayer();
-
-
-console.log("GAME OVER")
-
