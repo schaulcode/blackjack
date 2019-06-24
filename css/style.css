@@ -53,6 +53,10 @@ section{
     text-align: center;
     vertical-align: middle   
 }
+
+.animation{
+    animation: fade-in 3s     ;
+}
 #player-cards, #dealer-cards{
     height: 156.813px;
     text-align: right
@@ -128,4 +132,13 @@ img{
     top: auto ;
     left: auto;
     
+}
+
+@keyframes fade-in{
+    from{
+        font-size: 0px
+    }
+    to{
+        font-size: 24px
+    }
 }

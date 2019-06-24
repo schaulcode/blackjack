@@ -305,12 +305,14 @@ const newGame = async () =>{
 }
 
 const message = () =>{
+    var message = document.getElementById("message-title")
+    message.className = "animation"
     if(checkWinner() == player.name){
-        document.getElementById("message-title").innerText = "Congratulation YOU WON";
+        message.innerText = "Congratulation YOU WON";
     
         
     } else{
-        document.getElementById("message-title").innerText = "YOU LOST";
+        message.innerText = "YOU LOST";
 
     }
 }
