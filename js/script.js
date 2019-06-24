@@ -286,6 +286,7 @@ const newGame = async () =>{
     document.getElementById("dealer-cards").innerHTML = "";
     document.getElementById("player-cards").innerHTML = "";
     document.getElementById("message-title").innerText = "";
+    document.getElementById("message-title").classList.remove("animation");
     player.reset();
     com.reset();
     await deckCards();

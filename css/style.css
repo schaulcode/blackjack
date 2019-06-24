@@ -56,7 +56,6 @@ section{
     color: red;
 }
 
-
 #player-cards, #buttons, #player-handvalue,#message,#deck-cards,#dealer-handvalue,#dealer-cards,#turn{
     display: inline-block;
     text-align: center;
