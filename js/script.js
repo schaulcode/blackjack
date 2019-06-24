@@ -346,5 +346,3 @@ window.addEventListener("load", function(){
         document.getElementById("pop-up-background").className = "hidden";
     })
 })
-
-
