@@ -260,7 +260,7 @@ const deckCards = async () =>{
     for(i = 0; i < Object.keys(cardImage).length; i++){
         img = document.createElement("img");
         img.classList.add("card-back")
-        img.src = "./cards/PNG/blue_back.png";
+        img.src = "./cards/PNG/turquoise_back.png";
         img.style.transform = "translate(" + translate + "px," + translate + "px)"
         translate -= 0.25;
         img.style.zIndex = zIndex;
@@ -287,6 +287,7 @@ const newGame = async () =>{
     document.getElementById("dealer-cards").innerHTML = "";
     document.getElementById("player-cards").innerHTML = "";
     document.getElementById("message-title").innerText = "";
+    document.getElementById("message-title").classList.remove("animation");
     player.reset();
     com.reset();
     await deckCards();
@@ -306,13 +307,14 @@ const newGame = async () =>{
 }
 
 const message = () =>{
+    var message = document.getElementById("message-title")
+    message.className = "animation"
     if(checkWinner() == player.name){
-        document.getElementById("message-title").innerText = "Congratulation you won";
-    
-        
+        message.innerText = "Congratulation YOU WON";
+        message.classList.add("win")   
     } else{
-        document.getElementById("message-title").innerText = "YOUR LOST";
-
+        message.innerText = "YOU LOST";
+        message.classList.add("lost")
     }
 }
 
