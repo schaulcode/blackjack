@@ -318,9 +318,6 @@ window.addEventListener("load", function(){
         }
     }
     
-    // var name = prompt("Please enter your name");
-    
-    
     document.getElementById("new-game").addEventListener("click",()=>{
         newGame();
     })
@@ -334,7 +331,7 @@ window.addEventListener("load", function(){
     document.getElementById("end-turn").addEventListener("click",()=>{
         comPlayer();
     })
-    var name = prompt("Please enter your name:")
+    
     var player = new Player(name,"player-cards", "player-name", "player-value", "human")
     newGame();
 })
