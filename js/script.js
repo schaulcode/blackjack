@@ -332,8 +332,19 @@ window.addEventListener("load", function(){
         comPlayer();
     })
     
-    var player = new Player(name,"player-cards", "player-name", "player-value", "human")
-    newGame();
+    var player
+    
+
+    document.getElementById("pop-up-background").className = "show";
+    document.getElementById("confirm").addEventListener("click",()=>{
+        let name = document.getElementById("name").value;
+        player = new Player(name,"player-cards", "player-name", "player-value", "human");
+        document.getElementById("pop-up-background").className = "hidden";
+        newGame();
+    })
+    document.getElementById("cancel").addEventListener("click", ()=>{
+        document.getElementById("pop-up-background").className = "hidden";
+    })
 })
 
 
