@@ -44,7 +44,16 @@ section{
 }
 
 #message{
-    height: 70px
+    height: 70px;
+}
+#message-title{
+    font-size: 35px
+}
+.win{
+    color: rgb(17, 247, 17)
+}
+.lost{
+    color: red;
 }
 
 
@@ -55,7 +64,7 @@ section{
 }
 
 .animation{
-    animation: fade-in 3s     ;
+    animation: fade-in 1s ease-out ;
 }
 #player-cards, #dealer-cards{
     height: 156.813px;
@@ -137,8 +146,5 @@ img{
 @keyframes fade-in{
     from{
         font-size: 0px
-    }
-    to{
-        font-size: 24px
     }
 }

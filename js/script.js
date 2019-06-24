@@ -309,11 +309,10 @@ const message = () =>{
     message.className = "animation"
     if(checkWinner() == player.name){
         message.innerText = "Congratulation YOU WON";
-    
-        
+        message.classList.add("win")   
     } else{
         message.innerText = "YOU LOST";
-
+        message.classList.add("lost")
     }
 }
 
