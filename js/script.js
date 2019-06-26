@@ -217,7 +217,8 @@ window.addEventListener("load", function(){
         let card = document.getElementById(com.imgElement).firstChild.lastChild;
         await com.turnCard(card)
         card.classList.remove("card-back-com")
-        
+        com.handValue = checkCardsValue(com.hand);
+        document.getElementById(com.valueElement).innerHTML = com.handValue;
         do{
             if(com.handValue <= 16){ 
                 var c = deal();
@@ -302,7 +303,6 @@ window.addEventListener("load", function(){
         com.handValue = checkCardsValue(com.hand);
         await com.addImgElement();
         com.hand.push(deal());
-        com.handValue = checkCardsValue(com.hand);
         await com.addImgElement();
     }
     
@@ -331,8 +331,6 @@ window.addEventListener("load", function(){
     document.getElementById("end-turn").addEventListener("click",()=>{
         comPlayer();
     })
-    
-    var player
     
 
     document.getElementById("pop-up-background").className = "show";
