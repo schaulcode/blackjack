@@ -100,10 +100,16 @@ img{
 }
 
 
-
+.card-img{
+    background-image: url(../cards/PNG/turquoise_back.png);
+    background-size: cover;
+    width: 117px;
+    height: 180px;;
+}
 
 .card-back{
     position: absolute;
+    
 }
 .card-back-com{
     transform: translate(0,0) !important;

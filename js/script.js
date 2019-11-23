@@ -136,18 +136,35 @@ window.addEventListener("load", function(){
             
         }
         turnCard(card){
-            let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
             card = card.lastChild
-            card.style.transform = "rotate3d(0,100,0,90deg)";
-            card.style.transition = "transform 250ms linear";
-            card.addEventListener("transitionend",()=>{
-                card.lastChild.classList.remove("card-back");
-                card.lastChild.classList.add("card-front");
-                // let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
-                card.lastChild.src = "./cards/PNG/" + pic;
-                card.style.transform = "rotate3d(0,1,0,180deg)";
-                card.style.transition = "transform 250ms linear";
-            })
+            let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
+            var keyframe = [{
+                transform: "rotate3d(0,1,0,0deg)",
+                backgroundImage : "url('./cards/PNG/" + card.backgroundImage + "')"
+            },
+            {
+                backgroundImage: "url('./cards/PNG/" + pic + "')",
+                offset: 0.5
+            },
+            {
+                transform: "rotate3d(0,1,0,180deg)",
+                backgroundImage: "url('./cards/PNG/" + pic + "')"
+            }];
+             
+            // card.style.transform = "rotate3d(0,100,0,90deg)";
+            // card.style.transition = "transform 250ms linear";
+            // card.addEventListener("transitionend",()=>{
+            //     card.lastChild.classList.remove("card-back");
+            //     card.lastChild.classList.add("card-front");
+            //     // let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
+            //     card.lastChild.src = "./cards/PNG/" + pic;
+            //     card.style.transform = "rotate3d(0,1,0,180deg)";
+            //     card.style.transition = "transform 250ms linear";
+            // })
+
+            card.animate(keyframe,500);
+            card.lastChild.classList.remove("card-back");
+            card.lastChild.classList.add("card-front");
             return new Promise(res => setTimeout(()=>res("done"),650));
         }
         addingImg(){
@@ -259,9 +276,8 @@ window.addEventListener("load", function(){
         let zIndex = 2
         document.getElementById("deck-cards-container").innerHTML = ""
         for(i = 0; i < Object.keys(cardImage).length; i++){
-            img = document.createElement("img");
-            img.classList.add("card-back")
-            img.src = "./cards/PNG/turquoise_back.png";
+            img = document.createElement("div");
+            img.classList.add("card-back","card-img")
             img.style.transform = "translate(" + translate + "px," + translate + "px)"
             translate -= 0.25;
             img.style.zIndex = zIndex;
