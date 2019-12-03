@@ -67,7 +67,7 @@ window.addEventListener("load", function(){
             this.type = type;
             let rect = document.getElementById(this.imgElement).getBoundingClientRect();
             this.y = rect.y + 10;
-            this.x = rect.x + rect.width / 2 ; 
+            this.x = rect.x + rect.width / 2  + 117; 
             this.finalPosTemp = rect.width / 2 -100;
             this.finalPos = this.finalPosTemp
         }
@@ -113,16 +113,18 @@ window.addEventListener("load", function(){
             this.finalPos = this.finalPosTemp;
         }
     
-        moveCard(posX,posY){
+        async moveCard(posX,posY){
             let card = document.getElementById("deck-cards-container").lastChild;
             card.classList.add("card-dealing");
             card.classList.remove("card-on-deck")
             card.style.top = posY + "px";
-            card.style.left = posX + "px";
+            
             
             if(this.type != "com" || this.hand.length == 1 || turn == "com"){
-                this.turnCard(card)
+                card.style.left = posX + "px";
+                await this.turnCard(card)
             }else{ 
+                card.style.left = (posX -117) + "px";
                 card.lastChild.lastChild.classList.remove("card-back");
                 card.lastChild.lastChild.classList.add("card-back-com");
             } 
@@ -135,20 +137,23 @@ window.addEventListener("load", function(){
             return promise
             
         }
-        turnCard(card){
+        async turnCard(card){
             card = card.lastChild
-            let pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
-            var keyframe = [{
-                transform: "rotate3d(0,1,0,0deg)",
-                backgroundImage : "url('./cards/PNG/" + card.backgroundImage + "')"
+            var pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
+            console.log(pic);
+            var keyframe1 = [{
+                transform: "rotate3d(0,1,0,0deg)"
             },
             {
-                backgroundImage: "url('./cards/PNG/" + pic + "')",
-                offset: 0.5
+                transform: "rotate3d(0,1,0,90deg)"
+
+            }];
+            var keyframe2 = [{
+                transform: "rotate3d(0,1,0,90deg)"
             },
             {
-                transform: "rotate3d(0,1,0,180deg)",
-                backgroundImage: "url('./cards/PNG/" + pic + "')"
+                transform: "rotate3d(0,1,0,180deg)"
+
             }];
              
             // card.style.transform = "rotate3d(0,100,0,90deg)";
@@ -162,10 +167,18 @@ window.addEventListener("load", function(){
             //     card.style.transition = "transform 250ms linear";
             // })
 
-            card.animate(keyframe,500);
-            card.lastChild.classList.remove("card-back");
-            card.lastChild.classList.add("card-front");
-            return new Promise(res => setTimeout(()=>res("done"),650));
+            var animation1 = card.animate(keyframe1,250);
+            animation1.onfinish = function(){
+                card.lastChild.style.backgroundImage = "url('./cards/PNG/" + pic + "')";
+                var animation2 = card.animate(keyframe2,250)
+                animation2.onfinish = function(){
+                    card.lastChild.classList.remove("card-back");
+                    card.lastChild.classList.add("card-front");
+                    
+                    return new Promise(res => setTimeout(()=>res("done"),650));
+                }
+            }
+            
         }
         addingImg(){
                
