@@ -25,7 +25,7 @@
     <h1>Welcome to MTA Blackjack</h1>
     <section id="dealer">
         <div id="dealer-handvalue">
-                <p><span id="com-name"></span>, the value of your hand is <span id="com-value"></span></p>
+                <p><div id="com-name"></div><div id="com-value"></div></p>
         </div>
         <div id="dealer-cards">
         </div>
@@ -39,12 +39,13 @@
         </div>
         <div id="deck-cards">
             <div id="deck-cards-container"></div>
+            <div id="deck-cards-temp"></div>
         </div>
         
     </section>
     <section id="player">
         <div id="player-handvalue">
-            <p><span id="player-name"></span>, the value of your hand is <span id="player-value"></span></p>
+            <p><div id="player-name"></div><div id="player-value"></div></p>
         </div>
         <div id="player-cards"></div>
         <div id="buttons">
@@ -53,6 +54,18 @@
             <button id="end-turn">End Turn</button>
         </div>
     </section>
+    <div id="pop-up-background" class="hidden">
+        <div id="pop-up-box">
+            <div id="form">
+                <label for="name">Please enter your name</label>
+                <input id="name" type="text">
+                <div>
+                    <button id="confirm">Confirm</button>
+                    <button id="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 </html>

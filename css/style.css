@@ -1,33 +1,76 @@
 body{
-    background-color: darkgreen;
+    background-image: url(../background.jpg);
+    background-size: cover
 }
 h1{
+    color: rgb(137, 223, 226)
+}
+h1,#dealer-cards{
     text-align: center;
 }
 
 section{
-    height: 200px;     
-}
-#dealer-cards{
-    text-align: center
+    height: 180px;     
 }
 
 #player-handvalue,#deck-cards,#buttons,#turn,#dealer-handvalue{
     width: 14.5%;
     
 }
+#player-handvalue,#dealer-handvalue,#turn{
+    font-size: 40px;
+    background-color: rgba(0, 108, 103, 0.7);
+    height: inherit;
+ 
+}
+#turn{
+    font-size: 20px;  
+}
+#turn>p{
+    padding: 58.5px 0px;
+    color: rgb(137, 223, 226);
+    border-top: 1px dotted;
+    border-bottom: 1px dotted;
+}
+#player-name{
+    color: rgb(137, 223, 226);
+}
+#com-name{
+    color: rgb(137, 223, 226);
+}
 #player-cards,#message,#dealer-cards{
     width: 70%;
+    padding: 10px 0px;
+}
+
+#message{
+    height: 70px;
+}
+#message-title{
+    font-size: 35px
+}
+.win{
+    color: rgb(17, 247, 17)
+}
+.lost{
+    color: red;
 }
 
 #player-cards, #buttons, #player-handvalue,#message,#deck-cards,#dealer-handvalue,#dealer-cards,#turn{
     display: inline-block;
     text-align: center;
-    vertical-align: middle
-    
+    vertical-align: middle   
+}
+
+.animation{
+    animation: fade-in 1s ease-out ;
+}
+#player-cards, #dealer-cards{
+    height: 156.813px;
+    text-align: right
 }
 #deck-cards{
-    vertical-align: top;
+    /* vertical-align: top; */
     height: inherit;
 }
 #deck-cards-container{
@@ -35,14 +78,117 @@ section{
 }
 button{
     display: block;
-    width: 90px;
-    height: 30px;
+    width: 130px;
+    height: 40px;
     text-align: center;
-    margin: auto
+    margin: 5px;
+    font-size: 16px;
+    background-color: #006c67e0;
+    color: rgb(137, 223, 226); 
 }
 img{
     width: 100px;    
 }
 #player-cards>img:hover,#dealer-cards>img:hover{
     z-index: 10000 !important;
+}
+.card-container{
+    display: inline-block;
+}
+#player-cards > div,#dealer-cards>div{
+    display: inline-block;
+}
+
+
+
+
+.card-back{
+    position: absolute;
+}
+.card-back-com{
+    transform: translate(0,0) !important;
+}
+
+.card-front{
+    transform: rotate3d(0,1,0,180deg) translate(0,0) !important;
+}
+
+.card-turning{
+    transform: rotate3d(0,1,0,180deg);
+    transition: transform 250ms linear 0;
+}
+
+.card-on-deck{
+    transition-property: top,left;
+    transition-duration: 500ms;
+    transition-timing-function: linear;
+    /* transition-delay: 1s; */
+    
+
+}
+
+.card-dealing{
+    position: fixed;
+    transition-property:  top, left;
+    transition-duration: 600ms;
+    transition-timing-function: linear;
+    /* transition-delay: 1s; */
+}
+
+.card-dealt{
+    position: relative;
+    top: auto ;
+    left: auto;
+    
+}
+
+@keyframes fade-in{
+    from{
+        font-size: 0px
+    }
+}
+
+/* Pop-up-box */
+#pop-up-background{
+    height: 100%;
+    width:  100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255,0.5);
+    z-index: 20000;
+}
+#pop-up-box{
+    height: 35%;
+    width: 30%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    background-color: aliceblue;
+}
+
+#form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    line-height: 30px
+}
+#form label{
+    display: block;
+}
+#form button{
+    display: inline-block;
+}
+
+.hidden{
+    display: none
+}
+.show{
+    display: initial
 }
