@@ -100,24 +100,17 @@ img{
 }
 
 
-.card-img{
-    background-image: url(../cards/PNG/turquoise_back.png);
-    background-size: cover;
-    width: 100px;
-    height: 152px;;
-}
+
 
 .card-back{
     position: absolute;
-    
-    
 }
 .card-back-com{
     transform: translate(0,0) !important;
 }
 
 .card-front{
-    transform: translate(0,0) !important;
+    transform: rotate3d(0,1,0,180deg) translate(0,0) !important;
 }
 
 .card-turning{
@@ -137,7 +130,7 @@ img{
 .card-dealing{
     position: fixed;
     transition-property:  top, left;
-    transition-duration: 500ms;
+    transition-duration: 600ms;
     transition-timing-function: linear;
     /* transition-delay: 1s; */
 }
