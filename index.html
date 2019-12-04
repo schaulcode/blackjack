@@ -7,9 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script>
-        var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome/73') > -1;
-        if(!is_chrome){
-            alert("Sorry, this web application only works in Google chrome.");
+        var isChrome = false;
+        var chromeIndex = navigator.userAgent.toLowerCase().indexOf('chrome/')
+         if(chromeIndex > -1){
+            var subString = navigator.userAgent.toLowerCase().substring(chromeIndex,chromeIndex+9);
+            isChrome = (parseInt(subString.slice(subString.indexOf("/")+1))>72)?true:false   
+            }
+         console.log(isChrome)
+        if(!isChrome){
+            alert("Sorry, this web application only works in Google chrome version 73 and higher.");
             window.stop();
         }
     </script>
