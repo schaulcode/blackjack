@@ -66,8 +66,8 @@ window.addEventListener("load", function(){
             this.valueElement = valueElement
             this.type = type;
             let rect = document.getElementById(this.imgElement).getBoundingClientRect();
-            this.y = rect.y + 10;
-            this.x = rect.x + rect.width / 2  + 117; 
+            this.y = rect.y +15;
+            this.x = rect.x + rect.width / 2  ; 
             this.finalPosTemp = rect.width / 2 -100;
             this.finalPos = this.finalPosTemp
         }
@@ -124,7 +124,7 @@ window.addEventListener("load", function(){
                 card.style.left = posX + "px";
                 await this.turnCard(card)
             }else{ 
-                card.style.left = (posX -117) + "px";
+                card.style.left = posX + "px";
                 card.lastChild.lastChild.classList.remove("card-back");
                 card.lastChild.lastChild.classList.add("card-back-com");
             } 
@@ -142,7 +142,7 @@ window.addEventListener("load", function(){
             var pic = this.hand[this.hand.length-1][Object.keys(this.hand[this.hand.length-1])[0]]
             console.log(pic);
             var keyframe1 = [{
-                transform: "rotate3d(0,1,0,0deg)"
+                transform: "rotate3d(0,1,0,180deg)"
             },
             {
                 transform: "rotate3d(0,1,0,90deg)"
@@ -152,7 +152,7 @@ window.addEventListener("load", function(){
                 transform: "rotate3d(0,1,0,90deg)"
             },
             {
-                transform: "rotate3d(0,1,0,180deg)"
+                transform: "rotate3d(0,1,0,0deg)"
 
             }];
              
