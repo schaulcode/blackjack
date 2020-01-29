@@ -114,7 +114,7 @@ window.addEventListener("load", function(){
         }
     
         async moveCard(posX,posY){
-            let card = document.getElementById("deck-cards-container").lastChild;
+            var card = document.getElementById("deck-cards-container").lastChild;
             card.classList.add("card-dealing");
             card.classList.remove("card-on-deck")
             card.style.top = posY + "px";
