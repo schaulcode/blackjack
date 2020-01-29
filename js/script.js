@@ -113,7 +113,7 @@ window.addEventListener("load", function(){
             this.finalPos = this.finalPosTemp;
         }
     
-        moveCard(posX,posY){
+        async moveCard(posX,posY){
             let card = document.getElementById("deck-cards-container").lastChild;
             card.classList.add("card-dealing");
             card.classList.remove("card-on-deck")
@@ -121,7 +121,7 @@ window.addEventListener("load", function(){
             card.style.left = posX + "px";
             
             if(this.type != "com" || this.hand.length == 1 || turn == "com"){
-                this.turnCard(card)
+                await this.turnCard(card)
             }else{ 
                 card.lastChild.lastChild.classList.remove("card-back");
                 card.lastChild.lastChild.classList.add("card-back-com");
