@@ -113,15 +113,15 @@ window.addEventListener("load", function(){
             this.finalPos = this.finalPosTemp;
         }
     
-        async moveCard(posX,posY){
-            var card = document.getElementById("deck-cards-container").lastChild;
+         moveCard(posX,posY){
+            let card = document.getElementById("deck-cards-container").lastChild;
             card.classList.add("card-dealing");
             card.classList.remove("card-on-deck")
             card.style.top = posY + "px";
             card.style.left = posX + "px";
             
             if(this.type != "com" || this.hand.length == 1 || turn == "com"){
-              card = await this.turnCard(card)
+               this.turnCard(card)
             }else{ 
                 card.lastChild.lastChild.classList.remove("card-back");
                 card.lastChild.lastChild.classList.add("card-back-com");
@@ -148,7 +148,7 @@ window.addEventListener("load", function(){
                 card.style.transform = "rotate3d(0,1,0,180deg)";
                 card.style.transition = "transform 250ms linear";
             })
-            return new Promise(res => setTimeout(()=>res("done"),1000));
+            return new Promise(res => setTimeout(()=>res("done"),1000));  // doesn't work
         }
         addingImg(){
                
