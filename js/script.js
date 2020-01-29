@@ -148,7 +148,7 @@ window.addEventListener("load", function(){
                 card.style.transform = "rotate3d(0,1,0,180deg)";
                 card.style.transition = "transform 250ms linear";
             })
-            return new Promise(res => setTimeout(()=>res("done"),6000));
+            return new Promise(res => setTimeout(()=>res("done"),1000));
         }
         addingImg(){
                
